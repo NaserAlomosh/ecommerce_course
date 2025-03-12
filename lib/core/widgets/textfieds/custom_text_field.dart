@@ -28,12 +28,12 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  bool obscureText = false;
+  bool hidePassword = false;
 
   @override
   void initState() {
     super.initState();
-    obscureText = widget.obscureText ?? false;
+    hidePassword = widget.obscureText ?? false;
   }
 
   @override
@@ -42,18 +42,18 @@ class _CustomTextFieldState extends State<CustomTextField> {
       validator: widget.validator,
       controller: widget.controller,
       keyboardType: widget.keyboardType ?? TextInputType.text,
-      obscureText: obscureText,
+      obscureText: hidePassword,
       maxLength: widget.maxLength,
       decoration: InputDecoration(
         prefixIcon: widget.prefixIcon,
         suffixIcon: widget.obscureText == true
             ? GestureDetector(
                 onTap: () {
-                  obscureText = !obscureText;
+                  hidePassword = !hidePassword;
                   setState(() {});
                 },
                 child: Icon(
-                  obscureText ? Icons.visibility_off : Icons.remove_red_eye,
+                  hidePassword ? Icons.visibility_off : Icons.remove_red_eye,
                   color: Colors.grey,
                 ),
               )
