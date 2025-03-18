@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "558589444024",
+    "project_id": "cource-ecommerce",
+    "storage_bucket": "cource-ecommerce.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558589444024:android:222e137a6bab7f53c3d94d",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh9ITs7CKRQPP_ylSXfAKBpTN55NwtgLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
