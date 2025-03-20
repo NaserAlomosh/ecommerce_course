@@ -109,6 +109,7 @@ class SignupView extends StatelessWidget {
                                     } else if (!regex.hasMatch(email ?? '')) {
                                       return 'Please enter a valid email';
                                     }
+                                    return null;
                                   },
                                 ),
                                 const SizedBox(height: 10),
@@ -121,6 +122,7 @@ class SignupView extends StatelessWidget {
                                     } else if ((password?.length ?? 0) < 6) {
                                       return 'Password must be at least 6 characters';
                                     }
+                                    return null;
                                   },
                                   obscureText: true,
                                 ),
@@ -135,6 +137,7 @@ class SignupView extends StatelessWidget {
                                     } else if (confirmPassword != context.read<SignupCubit>().passwordController.text) {
                                       return 'Passwords do not match';
                                     }
+                                    return null;
                                   },
                                 ),
                                 const SizedBox(height: 38),
