@@ -1,5 +1,5 @@
+import 'package:ecommerce/core/local/local_storage_service.dart';
 import 'package:ecommerce/features/login/model/login_response_model.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class LoginStates {}
 
@@ -13,8 +13,4 @@ class LoginErrorState extends LoginStates {
   LoginErrorState({required this.error});
 }
 
-class LoginSucessState extends LoginStates {
-  final LoginResponseModel user;
-
-  LoginSucessState({required this.user});
-}
+class LoginSucessState extends LoginStates {}

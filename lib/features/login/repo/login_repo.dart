@@ -2,12 +2,17 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:ecommerce/core/local/local_storage_service.dart';
 import 'package:ecommerce/features/login/model/login_response_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../../core/local/user_data.dart';
+
 class LoginRepo {
-  Future<Either<String, LoginResponseModel>> loginRequest(
-      {required String email, required String password}) async {
+  Future<Either<String, LoginResponseModel>> loginRequest({
+    required String email,
+    required String password,
+  }) async {
     try {
       final result = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
@@ -25,6 +30,10 @@ class LoginRepo {
     final userData = snapshot.data();
     log('userData: $userData');
     LoginResponseModel loginResponseModel = LoginResponseModel.formJson(userData);
+
+    // Save user data to local database
+    await LocalStorageService.instance.setUserData(loginResponseModel);
+    UserDataService.setSaveUserData(loginResponseModel);
     return loginResponseModel;
   }
 }

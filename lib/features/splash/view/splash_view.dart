@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/local/local_storage_service.dart';
 import 'package:ecommerce/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -16,6 +17,8 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
+
+    final instance = LocalStorageService.instance;
     _goToLogin();
   }
 

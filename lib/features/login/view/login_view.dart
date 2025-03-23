@@ -73,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (_) => HomeView(user: state.user),
+          builder: (_) => const HomeView(),
         ),
       );
     } else if (state is LoginErrorState) {
