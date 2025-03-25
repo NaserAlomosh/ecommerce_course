@@ -1,5 +1,8 @@
 import 'package:ecommerce/core/local/local_storage_service.dart';
+import 'package:ecommerce/core/local/user_data.dart';
 import 'package:ecommerce/core/theme/app_colors.dart';
+import 'package:ecommerce/features/home/view/home_view.dart';
+import 'package:ecommerce/features/login/model/login_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -17,14 +20,20 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-
-    final instance = LocalStorageService.instance;
     _goToLogin();
   }
 
   void _goToLogin() {
-    Future.delayed(const Duration(seconds: 2)).then((_) {
-      if (mounted) {
+    Future.delayed(const Duration(seconds: 2)).then((_) async {
+      final isLogin = await LocalStorageService.instance.getUserIsLogin();
+      if (isLogin) {
+        LoginResponseModel userData = await LocalStorageService.instance.getUserData();
+        UserDataService.setUserData(userData);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const HomeView()),
+        );
+      } else {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (_) => const LoginView()),

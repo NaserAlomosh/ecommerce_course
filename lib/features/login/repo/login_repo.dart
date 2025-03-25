@@ -33,7 +33,7 @@ class LoginRepo {
 
     // Save user data to local database
     await LocalStorageService.instance.setUserData(loginResponseModel);
-    UserDataService.setSaveUserData(loginResponseModel);
+    UserDataService.setUserData(loginResponseModel);
     return loginResponseModel;
   }
 }

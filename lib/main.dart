@@ -1,4 +1,3 @@
-import 'package:ecommerce/core/local/local_storage_service.dart';
 import 'package:ecommerce/features/splash/view/splash_view.dart';
 import 'package:ecommerce/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -9,7 +8,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  final email = await LocalStorageService.instance;
 
   runApp(const MyApp());
 }

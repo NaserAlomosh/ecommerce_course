@@ -61,6 +61,20 @@ class LocalStorageService {
     await setUsername(loginResponseModel?.username ?? '');
     await setUid(loginResponseModel?.uid ?? '');
     await setPhone(loginResponseModel?.phone ?? '');
+    await setUserIsLogin(true);
+  }
+
+  Future<void> setUserIsLogin(bool isLogin) async {
+    await _storage?.write(key: 'userIsLogin', value: isLogin.toString());
+  }
+
+  Future<bool> getUserIsLogin() async {
+    final isLoginFromStorage = await _storage?.read(key: 'userIsLogin');
+    if (isLoginFromStorage != null && isLoginFromStorage == 'true') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Future<LoginResponseModel> getUserData() async {

@@ -1,6 +1,3 @@
-import 'package:ecommerce/core/local/local_storage_service.dart';
-import 'package:ecommerce/features/login/model/login_response_model.dart';
-
 abstract class LoginStates {}
 
 class LoginInitialState extends LoginStates {}

@@ -8,14 +8,14 @@ class UserDataService {
   static String? uid;
   static String? phone;
 
-  static void setSaveUserData(LoginResponseModel loginResponseModel) {
+  static void setUserData(LoginResponseModel loginResponseModel) {
     email = loginResponseModel.email;
     username = loginResponseModel.username;
     uid = loginResponseModel.uid;
     phone = loginResponseModel.phone;
   }
 
-  static Future<void> dispose() async {
+  static dispose() async {
     email = null;
     username = null;
     uid = null;

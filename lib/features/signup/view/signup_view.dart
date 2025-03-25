@@ -1,7 +1,6 @@
 import 'package:ecommerce/core/theme/app_padding.dart';
 import 'package:ecommerce/core/widgets/buttons/custom_button.dart';
-import 'package:ecommerce/core/widgets/loading/custom_loading_widget.dart'
-    show CustomDialogLoadingWidget, CustomLoadingWidget;
+import 'package:ecommerce/core/widgets/loading/custom_loading_widget.dart';
 import 'package:ecommerce/core/widgets/textfieds/custom_text_field.dart';
 import 'package:ecommerce/features/signup/view_model/signup_cubit.dart';
 import 'package:flutter/material.dart';
@@ -102,7 +101,8 @@ class SignupView extends StatelessWidget {
                                   controller: context.read<SignupCubit>().emailController,
                                   label: 'email',
                                   validator: (email) {
-                                    String pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$';
+                                    String pattern =
+                                        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$';
                                     RegExp regex = RegExp(pattern);
                                     if (email?.isEmpty ?? true) {
                                       return 'Please enter your email';
@@ -134,7 +134,8 @@ class SignupView extends StatelessWidget {
                                   validator: (confirmPassword) {
                                     if (confirmPassword?.isEmpty ?? true) {
                                       return 'Please enter your confirm password';
-                                    } else if (confirmPassword != context.read<SignupCubit>().passwordController.text) {
+                                    } else if (confirmPassword !=
+                                        context.read<SignupCubit>().passwordController.text) {
                                       return 'Passwords do not match';
                                     }
                                     return null;
