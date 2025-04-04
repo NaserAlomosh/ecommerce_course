@@ -1,0 +1,2 @@
+/Users/Development/Desktop/naser/ecommerce/android/app/.cxx/Debug/6v50224d/x86/CMakeFiles/edit_cache.dir
+/Users/Development/Desktop/naser/ecommerce/android/app/.cxx/Debug/6v50224d/x86/CMakeFiles/rebuild_cache.dir

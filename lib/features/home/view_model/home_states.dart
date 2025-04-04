@@ -13,3 +13,11 @@ class HomeErrorState extends HomeStates {
 }
 
 class HomeUpadateCategoryIndexState extends HomeStates {}
+
+class HomeLoadingProductsState extends HomeStates {}
+
+class HomeErrorProductsState extends HomeStates {
+  final String error;
+
+  HomeErrorProductsState({required this.error});
+}

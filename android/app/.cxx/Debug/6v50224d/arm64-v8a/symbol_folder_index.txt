@@ -1,0 +1,1 @@
+/Users/Development/Desktop/naser/ecommerce/build/app/intermediates/cxx/Debug/6v50224d/obj/arm64-v8a
