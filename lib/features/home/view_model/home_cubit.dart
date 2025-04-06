@@ -1,5 +1,5 @@
 import 'package:ecommerce/features/home/model/category_model.dart';
-import 'package:ecommerce/features/home/model/prudect_model.dart';
+import 'package:ecommerce/features/product_details/model/prudect_model.dart';
 import 'package:ecommerce/features/home/repo/home_repo.dart';
 import 'package:ecommerce/features/home/view_model/home_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

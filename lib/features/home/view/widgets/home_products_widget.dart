@@ -61,10 +61,10 @@ class _HomeProductsWidget extends StatelessWidget {
                           color: AppColors.primary,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       RatingBarIndicator(
                         rating: 2.75,
-                        itemBuilder: (context, index) => Icon(
+                        itemBuilder: (context, index) => const Icon(
                           Icons.star,
                           color: Colors.amber,
                         ),
@@ -72,7 +72,7 @@ class _HomeProductsWidget extends StatelessWidget {
                         itemSize: 20,
                         direction: Axis.horizontal,
                       ),
-                      SizedBox(height: 4)
+                      const SizedBox(height: 4)
                     ],
                   ),
                 ),

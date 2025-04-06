@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/core/theme/app_colors.dart';
 import 'package:ecommerce/core/theme/app_padding.dart';
+import 'package:ecommerce/features/cart/view/cart_view.dart';
 import 'package:ecommerce/features/home/model/category_model.dart';
 import 'package:ecommerce/features/home/view_model/home_cubit.dart';
 import 'package:ecommerce/features/home/view_model/home_states.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 part 'widgets/home_categories.dart';
 part 'widgets/home_products_widget.dart';
+part 'widgets/empty_products_widget.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -57,7 +59,9 @@ class HomeView extends StatelessWidget {
                               state is! HomeErrorState &&
                               state is! HomeLoadingProductsState &&
                               state is! HomeErrorProductsState
-                          ? const _HomeProductsWidget()
+                          ? context.read<HomeCubit>().products.isEmpty
+                              ? const _EmptyProductsWidget()
+                              : const _HomeProductsWidget()
                           : const Expanded(
                               child: Center(
                                 child: CircularProgressIndicator(),
@@ -77,20 +81,28 @@ class HomeView extends StatelessWidget {
   Widget getCartIcon(context) {
     return Stack(
       children: [
-        Container(
-          decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(100),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: Stack(
-              children: [
-                Icon(
-                  Icons.shopping_cart_outlined,
-                  color: Colors.white,
-                ),
-              ],
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CartView()),
+            );
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppColors.primary,
+              borderRadius: BorderRadius.circular(100),
+            ),
+            child: const Padding(
+              padding: EdgeInsets.all(12),
+              child: Stack(
+                children: [
+                  Icon(
+                    Icons.shopping_cart_outlined,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

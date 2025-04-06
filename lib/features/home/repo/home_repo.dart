@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce/features/home/model/category_model.dart';
-import 'package:ecommerce/features/home/model/prudect_model.dart';
+import 'package:ecommerce/features/product_details/model/prudect_model.dart';
 
 class HomeRepo {
   Future<Either<String, List<CategoryModel>>> getCategories() async {
