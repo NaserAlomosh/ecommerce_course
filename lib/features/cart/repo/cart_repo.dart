@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce/core/local/user_data.dart';
@@ -32,6 +30,33 @@ class CartRepo {
           .collection('cart')
           .doc(productId)
           .update({'count': count});
+      return const Right(null);
+    } on FirebaseException catch (e) {
+      return Left(e.message ?? '');
+    }
+  }
+
+  Future<Either<String, int>> getCount() async {
+    try {
+      final result = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(UserDataService.uid)
+          .collection('cart')
+          .get();
+      return Right(result.docs.length);
+    } on FirebaseException catch (e) {
+      return Left(e.message ?? '');
+    }
+  }
+
+  Future<Either<String, void>> removeProduct(String productId) async {
+    try {
+      final result = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(UserDataService.uid)
+          .collection('cart')
+          .doc(productId)
+          .delete();
       return const Right(null);
     } on FirebaseException catch (e) {
       return Left(e.message ?? '');

@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/core/theme/app_colors.dart';
 import 'package:ecommerce/core/theme/app_padding.dart';
 import 'package:ecommerce/core/widgets/buttons/custom_button.dart';
+import 'package:ecommerce/core/widgets/cart_icon_builder/view_model/cart_icon_builder_cubit.dart';
 import 'package:ecommerce/features/cart/view_model/cubit.dart';
 import 'package:ecommerce/features/cart/view_model/states.dart';
 import 'package:ecommerce/features/product_details/model/prudect_model.dart';
@@ -25,6 +26,22 @@ class CartView extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
+          leading: BlocBuilder<CartCubit, CartStates>(
+            builder: (context, state) {
+              return IconButton(
+                icon: const Icon(
+                  Icons.arrow_back_ios_new_sharp,
+                  color: Colors.black,
+                ),
+                onPressed: () {
+                  Navigator.pop(
+                    context,
+                    context.read<CartCubit>().userIsDeleteProduct,
+                  );
+                },
+              );
+            },
+          ),
           title: const Text(
             'Cart',
             style: TextStyle(color: Colors.black),
@@ -32,8 +49,10 @@ class CartView extends StatelessWidget {
         ),
         body: SafeArea(
           child: BlocBuilder<CartCubit, CartStates>(
+            buildWhen: (_, current) {
+              return current is! CartUpdateCountState;
+            },
             builder: (context, state) {
-              log('Screen Rebuid');
               if (state is CartLoadingState) {
                 return const Center(
                   child: CircularProgressIndicator(),

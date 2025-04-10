@@ -13,3 +13,5 @@ class CartErrorState extends CartStates {
 }
 
 class CartUpdateCountState extends CartStates {}
+
+class CartUpdateProductsState extends CartStates {}
