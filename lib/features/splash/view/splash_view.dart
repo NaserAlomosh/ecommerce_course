@@ -27,17 +27,22 @@ class _SplashViewState extends State<SplashView> {
     Future.delayed(const Duration(seconds: 2)).then((_) async {
       final isLogin = await LocalStorageService.instance.getUserIsLogin();
       if (isLogin) {
-        LoginResponseModel userData = await LocalStorageService.instance.getUserData();
+        LoginResponseModel userData =
+            await LocalStorageService.instance.getUserData();
         UserDataService.setUserData(userData);
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const HomeView()),
-        );
+        if (context.mounted) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const HomeView()),
+          );
+        }
       } else {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const LoginView()),
-        );
+        if (context.mounted) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const LoginView()),
+          );
+        }
       }
     });
   }

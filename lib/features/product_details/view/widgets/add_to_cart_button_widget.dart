@@ -14,7 +14,7 @@ class _AddToCartButtonWidget extends StatelessWidget {
             child: CustomButton(
               text: 'Add to Cart',
               onTap: () {
-                context.read<ProductDetailsCubit>().addToCart();
+                context.read<ProductDetailsCubit>().addToCart(context);
               },
             ),
           ),

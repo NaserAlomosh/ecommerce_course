@@ -25,7 +25,7 @@ class _CounterWidgetState extends State<_CounterWidget> {
                 onPressed: () {
                   final productId =
                       context.read<CartCubit>().products[widget.index].id;
-                  context.read<CartCubit>().removeProduct(productId);
+                  context.read<CartCubit>().removeProduct(productId, context);
                 },
               ),
               const Spacer(),

@@ -11,3 +11,15 @@ class AddToCartError extends ProductDetailsStates {
 
   AddToCartError({required this.error});
 }
+
+class GetUpdateFavoriteIcon extends ProductDetailsStates {}
+
+class GetFavoriteLoading extends ProductDetailsStates {}
+
+class GetFavoriteSucess extends ProductDetailsStates {}
+
+class GetFavoriteError extends ProductDetailsStates {
+  final String error;
+
+  GetFavoriteError({required this.error});
+}

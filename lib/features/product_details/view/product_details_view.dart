@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 part 'widgets/products_details_widget.dart';
 part 'widgets/add_to_cart_button_widget.dart';
+part 'widgets/favorite_icon_widget.dart';
 
 class ProductDetailsView extends StatelessWidget {
   const ProductDetailsView({super.key, required this.product});
@@ -18,16 +19,14 @@ class ProductDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductDetailsCubit(product: product),
+      create: (context) => ProductDetailsCubit(product: product)
+        ..checkIfProductIsExistsInFavorite(),
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
           actions: const [
-            Icon(
-              Icons.favorite,
-              color: Colors.red,
-            ),
+            _FavoriteIconWidget(),
             SizedBox(width: 20),
             Icon(
               Icons.share,

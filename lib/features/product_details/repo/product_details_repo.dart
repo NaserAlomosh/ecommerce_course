@@ -6,7 +6,9 @@ import 'package:ecommerce/core/local/user_data.dart';
 import 'package:ecommerce/features/product_details/model/prudect_model.dart';
 
 class ProductDetailsRepo {
-  Future<Either<String, bool>> addToCart({required ProductModel productDetails}) async {
+  Future<Either<String, bool>> addToCart({
+    required ProductModel productDetails,
+  }) async {
     try {
       final result = await _checkIfProductExistsInCart(productDetails.id);
 
@@ -43,7 +45,8 @@ class ProductDetailsRepo {
     log('Update Product DATA ${product.toJson()}');
   }
 
-  Future<Either<void, ProductModel>> _checkIfProductExistsInCart(String id) async {
+  Future<Either<void, ProductModel>> _checkIfProductExistsInCart(
+      String id) async {
     final result = await FirebaseFirestore.instance
         .collection('users')
         .doc(UserDataService.uid)
@@ -56,6 +59,54 @@ class ProductDetailsRepo {
       return Right(product);
     } else {
       return const Left(null);
+    }
+  }
+
+  Future<Either<String, void>> addToFavorite(ProductModel product) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(UserDataService.uid)
+          .collection('favorite')
+          .doc(product.id)
+          .set(product.toJson());
+      return const Right(null);
+    } on FirebaseException catch (e) {
+      return Left(e.message ?? '');
+    }
+  }
+
+  Future<Either<String, void>> removeFromFavorite(String productId) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(UserDataService.uid)
+          .collection('favorite')
+          .doc(productId)
+          .delete();
+      return const Right(null);
+    } on FirebaseException catch (e) {
+      return Left(e.message ?? '');
+    }
+  }
+
+  Future<Either<String, bool>> checkIfProductIsExistsInFavorite(
+    String productId,
+  ) async {
+    try {
+      final result = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(UserDataService.uid)
+          .collection('favorite')
+          .doc(productId)
+          .get();
+      if (result.exists) {
+        return const Right(true);
+      } else {
+        return const Right(false);
+      }
+    } on FirebaseException catch (e) {
+      return Left(e.message ?? '');
     }
   }
 }

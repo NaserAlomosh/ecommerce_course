@@ -51,7 +51,7 @@ class CartRepo {
 
   Future<Either<String, void>> removeProduct(String productId) async {
     try {
-      final result = await FirebaseFirestore.instance
+      await FirebaseFirestore.instance
           .collection('users')
           .doc(UserDataService.uid)
           .collection('cart')

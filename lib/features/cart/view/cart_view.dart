@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/core/theme/app_colors.dart';
 import 'package:ecommerce/core/theme/app_padding.dart';
 import 'package:ecommerce/core/widgets/buttons/custom_button.dart';
-import 'package:ecommerce/core/widgets/cart_icon_builder/view_model/cart_icon_builder_cubit.dart';
 import 'package:ecommerce/features/cart/view_model/cubit.dart';
 import 'package:ecommerce/features/cart/view_model/states.dart';
 import 'package:ecommerce/features/product_details/model/prudect_model.dart';
@@ -26,22 +23,6 @@ class CartView extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          leading: BlocBuilder<CartCubit, CartStates>(
-            builder: (context, state) {
-              return IconButton(
-                icon: const Icon(
-                  Icons.arrow_back_ios_new_sharp,
-                  color: Colors.black,
-                ),
-                onPressed: () {
-                  Navigator.pop(
-                    context,
-                    context.read<CartCubit>().userIsDeleteProduct,
-                  );
-                },
-              );
-            },
-          ),
           title: const Text(
             'Cart',
             style: TextStyle(color: Colors.black),
@@ -62,22 +43,47 @@ class CartView extends StatelessWidget {
                   child: Text(state.error),
                 );
               } else {
-                return Column(
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: context.read<CartCubit>().products.length,
-                        itemBuilder: (context, index) {
-                          return _CartItemWidget(
-                            product: context.read<CartCubit>().products[index],
-                            index: index,
-                          );
-                        },
+                if (context.read<CartCubit>().products.isEmpty) {
+                  return Padding(
+                    padding: AppPadding.allPadding,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: AppColors.primary,
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Cart is Empty',
+                          style: GoogleFonts.poppins(
+                            color: AppColors.primary,
+                            fontSize: 26,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ),
                     ),
-                    const _CheckOutButtonWidget()
-                  ],
-                );
+                  );
+                } else {
+                  return Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: context.read<CartCubit>().products.length,
+                          itemBuilder: (context, index) {
+                            return _CartItemWidget(
+                              product:
+                                  context.read<CartCubit>().products[index],
+                              index: index,
+                            );
+                          },
+                        ),
+                      ),
+                      const _CheckOutButtonWidget()
+                    ],
+                  );
+                }
               }
             },
           ),

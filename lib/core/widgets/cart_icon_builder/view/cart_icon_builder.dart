@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:ecommerce/core/widgets/cart_icon_builder/view_model/cart_icon_builder_cubit.dart';
 import 'package:ecommerce/core/widgets/cart_icon_builder/view_model/states.dart';
 import 'package:ecommerce/features/cart/view/cart_view.dart';
+import 'package:ecommerce/features/home/view_model/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,8 +32,8 @@ class CartIconBuilder extends StatelessWidget {
               return Stack(
                 children: [
                   GestureDetector(
-                    onTap: () async {
-                      final userIsDeletedProduct = await Navigator.push(
+                    onTap: () {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (_) => BlocProvider.value(
@@ -41,11 +42,6 @@ class CartIconBuilder extends StatelessWidget {
                           ),
                         ),
                       );
-                      if (userIsDeletedProduct == true) {
-                        context.read<CartIconBuilderCubit>().getCount();
-                      } else {
-                        log('userIsDeletedProduct: $userIsDeletedProduct');
-                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(

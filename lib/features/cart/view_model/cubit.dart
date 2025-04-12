@@ -1,14 +1,16 @@
 import 'dart:developer';
 
+import 'package:ecommerce/core/widgets/cart_icon_builder/view_model/cart_icon_builder_cubit.dart';
 import 'package:ecommerce/features/cart/repo/cart_repo.dart';
 import 'package:ecommerce/features/cart/view_model/states.dart';
 import 'package:ecommerce/features/product_details/model/prudect_model.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartCubit extends Cubit<CartStates> {
   CartCubit() : super(CartInitialState());
   final _cartRepo = CartRepo();
-  bool userIsDeleteProduct = false;
+
   List<ProductModel> products = [];
   double totalPrice = 0;
   Future<void> getCartItems() async {
@@ -45,12 +47,16 @@ class CartCubit extends Cubit<CartStates> {
     emit(CartUpdateCountState());
   }
 
-  void removeProduct(String productId) {
-    final result = _cartRepo.removeProduct(productId);
+  void removeProduct(String productId, BuildContext context) async {
+    final cubit = context.read<CartIconBuilderCubit>();
     products.removeWhere((product) => product.id == productId);
     calculateTotal();
-    userIsDeleteProduct = true;
     emit(CartUpdateProductsState());
+    final result = await _cartRepo.removeProduct(productId);
+    result.fold(
+      (error) => emit(CartErrorState(error: error)),
+      (_) => cubit.getCount(),
+    );
   }
 
   void calculateTotal() {

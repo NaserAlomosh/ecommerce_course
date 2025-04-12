@@ -18,8 +18,11 @@ class _HomeProductsWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => ProductDetailsView(
-                    product: context.read<HomeCubit>().products[index],
+                  builder: (_) => BlocProvider.value(
+                    value: context.read<CartIconBuilderCubit>(),
+                    child: ProductDetailsView(
+                      product: context.read<HomeCubit>().products[index],
+                    ),
                   ),
                 ),
               );
@@ -37,11 +40,13 @@ class _HomeProductsWidget extends StatelessWidget {
                         height: 140,
                         fit: BoxFit.cover,
                         width: double.infinity,
-                        imageUrl: context.read<HomeCubit>().products[index].image,
+                        imageUrl:
+                            context.read<HomeCubit>().products[index].image,
                         placeholder: (context, url) => const Center(
                           child: CircularProgressIndicator(),
                         ),
-                        errorWidget: (context, url, error) => const Icon(Icons.error),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                       ),
                       const SizedBox(height: 4),
                       Text(
