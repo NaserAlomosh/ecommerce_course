@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/core/local/local_storage_service.dart';
 import 'package:ecommerce/core/local/user_data.dart';
@@ -6,6 +8,7 @@ import 'package:ecommerce/core/theme/app_padding.dart';
 import 'package:ecommerce/core/widgets/cart_icon_builder/view/cart_icon_builder.dart';
 import 'package:ecommerce/core/widgets/cart_icon_builder/view_model/cart_icon_builder_cubit.dart';
 import 'package:ecommerce/features/cart/view/cart_view.dart';
+import 'package:ecommerce/features/favorites/view/favorites_view.dart';
 import 'package:ecommerce/features/home/model/category_model.dart';
 import 'package:ecommerce/features/home/view_model/home_cubit.dart';
 import 'package:ecommerce/features/home/view_model/home_states.dart';

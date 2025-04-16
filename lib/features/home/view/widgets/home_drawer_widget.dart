@@ -37,6 +37,17 @@ class _HomeDrawerWidget extends StatelessWidget {
             ),
             const SizedBox(height: 60),
             ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => BlocProvider.value(
+                      value: context.read<CartIconBuilderCubit>(),
+                      child: const FavoritesView(),
+                    ),
+                  ),
+                );
+              },
               title: Text(
                 'Favorites',
                 style: GoogleFonts.poppins(
@@ -49,7 +60,6 @@ class _HomeDrawerWidget extends StatelessWidget {
                 Icons.favorite,
                 color: Colors.red,
               ),
-              onTap: () {},
             ),
             ListTile(
               title: Text(
