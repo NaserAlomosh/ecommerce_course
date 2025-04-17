@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/core/theme/app_colors.dart';
-import 'package:ecommerce/core/theme/app_padding.dart';
 import 'package:ecommerce/core/widgets/cart_icon_builder/view_model/cart_icon_builder_cubit.dart';
 import 'package:ecommerce/features/favorites/view_model/cubit.dart';
 import 'package:ecommerce/features/favorites/view_model/states.dart';
@@ -52,15 +51,10 @@ class FavoritesView extends StatelessWidget {
                       ),
                     )
                   : ListView.builder(
-                      itemCount: context
-                          .read<FavorietsCubit>()
-                          .favoriteProducts
-                          .length,
+                      itemCount: context.read<FavorietsCubit>().favoriteProducts.length,
                       itemBuilder: (context, index) {
                         return _FavoriteItemWidget(
-                          product: context
-                              .read<FavorietsCubit>()
-                              .favoriteProducts[index],
+                          product: context.read<FavorietsCubit>().favoriteProducts[index],
                         );
                       },
                     );

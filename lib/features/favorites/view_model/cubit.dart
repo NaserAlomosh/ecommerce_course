@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:ecommerce/features/favorites/repo/favoriets_repo.dart';
 import 'package:ecommerce/features/favorites/view_model/states.dart';
 import 'package:ecommerce/features/product_details/model/prudect_model.dart';

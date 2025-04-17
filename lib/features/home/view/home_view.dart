@@ -14,6 +14,7 @@ import 'package:ecommerce/features/home/view_model/home_cubit.dart';
 import 'package:ecommerce/features/home/view_model/home_states.dart';
 import 'package:ecommerce/features/login/view/login_view.dart';
 import 'package:ecommerce/features/product_details/view/product_details_view.dart';
+import 'package:ecommerce/features/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';

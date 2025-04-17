@@ -71,7 +71,14 @@ class _HomeDrawerWidget extends StatelessWidget {
                 ),
               ),
               trailing: const Icon(Icons.arrow_forward_ios_rounded),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SettingsView(),
+                  ),
+                );
+              },
             ),
             const Spacer(),
             ListTile(
