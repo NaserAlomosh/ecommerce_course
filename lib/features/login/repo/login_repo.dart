@@ -26,10 +26,12 @@ class LoginRepo {
   }
 
   Future<LoginResponseModel> getUserData({required String uid}) async {
-    final snapshot = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+    final snapshot =
+        await FirebaseFirestore.instance.collection('users').doc(uid).get();
     final userData = snapshot.data();
     log('userData: $userData');
-    LoginResponseModel loginResponseModel = LoginResponseModel.formJson(userData);
+    LoginResponseModel loginResponseModel =
+        LoginResponseModel.formJson(userData);
 
     // Save user data to local database
     await LocalStorageService.instance.setUserData(loginResponseModel);

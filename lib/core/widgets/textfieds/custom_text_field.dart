@@ -13,6 +13,8 @@ class CustomTextField extends StatefulWidget {
     this.controller,
     this.validator,
     this.maxLength,
+    this.onChanged,
+    this.readOnly = false,
   });
   final String label;
   final double? borderRadius;
@@ -22,7 +24,9 @@ class CustomTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
   final int? maxLength;
+  final bool readOnly;
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
@@ -39,7 +43,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: widget.readOnly,
       validator: widget.validator,
+      onChanged: widget.onChanged,
       controller: widget.controller,
       keyboardType: widget.keyboardType ?? TextInputType.text,
       obscureText: hidePassword,

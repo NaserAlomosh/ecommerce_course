@@ -12,7 +12,7 @@ class ChangePasswordRepo {
         email: UserDataService.email ?? '',
         password: oldPassword,
       );
-      // await FirebaseAuth.instance.currentUser?.updatePassword(newPassword);
+      await FirebaseAuth.instance.currentUser?.updatePassword(newPassword);
       return const Right('Change Password Successfully');
     } on FirebaseAuthException catch (_) {
       return const Left('Old Password is not correct');

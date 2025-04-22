@@ -26,8 +26,14 @@ class _FavoriteItemWidget extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (_) => BlocProvider.value(
-                  value: context.read<CartIconBuilderCubit>(),
-                  child: ProductDetailsView(product: product),
+                  value: context.read<FavorietsCubit>(),
+                  child: BlocProvider.value(
+                    value: context.read<CartIconBuilderCubit>(),
+                    child: ProductDetailsView(
+                      product: product,
+                      fromFavorites: true,
+                    ),
+                  ),
                 ),
               ),
             );
@@ -43,8 +49,7 @@ class _FavoriteItemWidget extends StatelessWidget {
                   _getImage(product.image),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

@@ -21,7 +21,7 @@ class _FavoriteIconWidget extends StatelessWidget {
         return context.read<ProductDetailsCubit>().isFavorite
             ? GestureDetector(
                 onTap: () {
-                  context.read<ProductDetailsCubit>().removeFromFavorite();
+                  context.read<ProductDetailsCubit>().removeFromFavorite(context);
                 },
                 child: const Icon(
                   Icons.favorite,
@@ -30,7 +30,7 @@ class _FavoriteIconWidget extends StatelessWidget {
               )
             : GestureDetector(
                 onTap: () {
-                  context.read<ProductDetailsCubit>().addToFavorite();
+                  context.read<ProductDetailsCubit>().addToFavorite(context);
                 },
                 child: const Icon(
                   Icons.favorite_border,

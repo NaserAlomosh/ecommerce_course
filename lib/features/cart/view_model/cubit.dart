@@ -41,10 +41,13 @@ class CartCubit extends Cubit<CartStates> {
   }
 
   removeCount(int index) {
-    products[index].count = (products[index].count ?? 1) - 1;
-    calculateTotal();
-    updateCount(index);
-    emit(CartUpdateCountState());
+    final count = products[index].count ?? 0;
+    if (count > 1) {
+      products[index].count = (products[index].count ?? 1) - 1;
+      calculateTotal();
+      updateCount(index);
+      emit(CartUpdateCountState());
+    }
   }
 
   void removeProduct(String productId, BuildContext context) async {
@@ -60,6 +63,7 @@ class CartCubit extends Cubit<CartStates> {
   }
 
   void calculateTotal() {
+    totalPrice = 0;
     for (var element in products) {
       final totalCountPrice = element.price * (element.count ?? 1);
       totalPrice = totalPrice + totalCountPrice;

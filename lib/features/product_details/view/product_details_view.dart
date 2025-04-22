@@ -14,13 +14,20 @@ part 'widgets/add_to_cart_button_widget.dart';
 part 'widgets/favorite_icon_widget.dart';
 
 class ProductDetailsView extends StatelessWidget {
-  const ProductDetailsView({super.key, required this.product});
+  const ProductDetailsView({
+    super.key,
+    required this.product,
+    this.fromFavorites = false,
+  });
   final ProductModel product;
+  final bool fromFavorites;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductDetailsCubit(product: product)
-        ..checkIfProductIsExistsInFavorite(),
+      create: (context) => ProductDetailsCubit(
+        product: product,
+        fromFavorite: fromFavorites,
+      )..checkIfProductIsExistsInFavorite(),
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(

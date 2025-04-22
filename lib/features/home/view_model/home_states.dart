@@ -21,3 +21,5 @@ class HomeErrorProductsState extends HomeStates {
 
   HomeErrorProductsState({required this.error});
 }
+
+class HomeSearchState extends HomeStates {}

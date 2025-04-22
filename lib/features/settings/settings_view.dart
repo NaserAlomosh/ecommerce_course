@@ -1,5 +1,6 @@
 import 'package:ecommerce/core/theme/app_padding.dart';
 import 'package:ecommerce/features/change_password/view/change_password_view.dart';
+import 'package:ecommerce/features/change_profile/view/change_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,7 +22,14 @@ class SettingsView extends StatelessWidget {
             _getOption(
               'Change Profile',
               Icons.person_outline_outlined,
-              () {},
+              () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const ChangeProfileView(),
+                  ),
+                );
+              },
             ),
             _getDivider(),
             _getOption(
